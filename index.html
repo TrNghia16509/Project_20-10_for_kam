@@ -1,0 +1,400 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chúc Mừng Ngày 20/10</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #ffeef8 0%, #fff5f9 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            position: relative;
+            width: 100%;
+            min-height: 100vh;
+        }
+
+        .screen {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+
+        .screen.active {
+            opacity: 1;
+            visibility: visible;
+            z-index: 10;
+        }
+
+        /* Screen 1 - Tặng nè */
+        .screen-1 {
+            background: linear-gradient(135deg, #ffeef8 0%, #fff5f9 100%);
+        }
+
+        .title-main {
+            font-size: 3.5rem;
+            color: #ff69b4;
+            margin-bottom: 40px;
+            font-weight: bold;
+            animation: bounce 2s infinite;
+        }
+
+        .bunny-card {
+            background: white;
+            border-radius: 30px;
+            padding: 60px 80px;
+            box-shadow: 0 20px 60px rgba(255, 105, 180, 0.2);
+            text-align: center;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .bunny {
+            font-size: 120px;
+            margin: 20px 0;
+            display: inline-block;
+            animation: wave 1s ease-in-out infinite;
+        }
+
+        .subtitle {
+            color: #ff69b4;
+            font-size: 1.5rem;
+            font-style: italic;
+            margin-top: 20px;
+        }
+
+        /* Screen 2 - Flowers */
+        .screen-2 {
+            background: linear-gradient(135deg, #fff0f5 0%, #ffe4f0 100%);
+        }
+
+        .greeting-text {
+            font-size: 1.8rem;
+            color: #ff1493;
+            margin-bottom: 40px;
+            text-align: center;
+            line-height: 1.6;
+            font-weight: 500;
+        }
+
+        .flower-bouquet {
+            font-size: 200px;
+            animation: grow 1.5s ease-in-out;
+        }
+
+        /* Screen 3 - Message */
+        .screen-3 {
+            background: linear-gradient(135deg, #e6e6fa 0%, #f0e6fa 100%);
+        }
+
+        .message-card {
+            background: white;
+            border-radius: 30px;
+            padding: 50px;
+            max-width: 600px;
+            box-shadow: 0 20px 60px rgba(138, 43, 226, 0.2);
+            animation: slideUp 1s ease;
+        }
+
+        .message-title {
+            font-size: 2rem;
+            color: #8b008b;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .message-content {
+            color: #333;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            text-align: center;
+        }
+
+        .message-content p {
+            margin-bottom: 20px;
+        }
+
+        /* Screen 4 - Final */
+        .screen-4 {
+            background: linear-gradient(135deg, #ffe4e1 0%, #fff0f5 100%);
+        }
+
+        .final-card {
+            text-align: center;
+            background: white;
+            border-radius: 30px;
+            padding: 50px;
+            box-shadow: 0 20px 60px rgba(255, 105, 180, 0.3);
+        }
+
+        .girl-emoji {
+            font-size: 120px;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .final-message {
+            font-size: 1.8rem;
+            color: #ff1493;
+            margin: 20px 0;
+            line-height: 1.6;
+            font-weight: 500;
+        }
+
+        .flowers-final {
+            font-size: 150px;
+            margin-top: 20px;
+        }
+
+        /* Navigation buttons */
+        .nav-button {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            background: linear-gradient(135deg, #ff69b4 0%, #ff1493 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.4);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .nav-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(255, 105, 180, 0.6);
+        }
+
+        .nav-button:active {
+            transform: translateY(-2px);
+        }
+
+        /* Animations */
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-30px); }
+        }
+
+        @keyframes wave {
+            0%, 100% { transform: rotate(-10deg); }
+            50% { transform: rotate(10deg); }
+        }
+
+        @keyframes grow {
+            0% { transform: scale(0); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            0% { transform: translateY(100px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Floating hearts */
+        .heart {
+            position: fixed;
+            font-size: 30px;
+            animation: floatHeart 5s ease-in-out infinite;
+            opacity: 0.7;
+            z-index: 999;
+            pointer-events: none;
+        }
+
+        @keyframes floatHeart {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.7; }
+            90% { opacity: 0.7; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* Progress dots */
+        .progress-dots {
+            position: fixed;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            z-index: 1000;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 105, 180, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .dot.active {
+            background: #ff69b4;
+            transform: scale(1.5);
+        }
+
+        @media (max-width: 768px) {
+            .title-main { font-size: 2.5rem; }
+            .bunny { font-size: 80px; }
+            .bunny-card { padding: 40px 50px; }
+            .flower-bouquet { font-size: 150px; }
+            .message-card { padding: 30px; }
+            .girl-emoji { font-size: 100px; }
+            .nav-button { bottom: 20px; right: 20px; padding: 12px 30px; font-size: 1rem; }
+            .greeting-text { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Progress dots -->
+    <div class="progress-dots">
+        <div class="dot active"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+    </div>
+
+    <div class="container">
+        <!-- Screen 1: Tặng nè -->
+        <div class="screen screen-1 active">
+            <h1 class="title-main">Tặng nè</h1>
+            <div class="bunny-card">
+                <div class="bunny">🐰🌸</div>
+                <p class="subtitle">Chạm vào đây</p>
+            </div>
+        </div>
+
+        <!-- Screen 2: Flowers -->
+        <div class="screen screen-2">
+            <p class="greeting-text">Chúc mừng ngày phụ<br>nữ Việt Nam 20-10</p>
+            <div class="flower-bouquet">💐</div>
+        </div>
+
+        <!-- Screen 3: Message -->
+        <div class="screen screen-3">
+            <p class="greeting-text">Chúc mừng ngày phụ<br>nữ Việt Nam 20-10</p>
+            <div class="message-card">
+                <h2 class="message-title">Gửi em 🌹</h2>
+                <div class="message-content">
+                    <p>Hôm nay là 20/10 một ngày đặc biệt dành cho những người con gái dịu hiền.</p>
+                    <p>Em là một trong số đó đấu đúng, ấm áp và luôn mang lại cảm giác đẹp chịu cho những người xung quanh.</p>
+                    <p>Chạm vào bông hoa nhé em.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Screen 4: Final -->
+        <div class="screen screen-4">
+            <div class="final-card">
+                <div class="girl-emoji">👩‍🦰</div>
+                <p class="final-message">Chúc em luôn<br>may mắn và<br>thành công</p>
+                <div class="flowers-final">💐</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation button -->
+    <button class="nav-button" id="nextBtn">Tiếp theo →</button>
+
+    <!-- Floating hearts container -->
+    <div id="hearts-container"></div>
+
+    <script>
+        let currentScreen = 0;
+        const totalScreens = 4;
+        const screens = document.querySelectorAll('.screen');
+        const dots = document.querySelectorAll('.dot');
+        const nextBtn = document.getElementById('nextBtn');
+
+        function updateProgress() {
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentScreen);
+            });
+        }
+
+        function nextScreen() {
+            // Remove active from current screen
+            screens[currentScreen].classList.remove('active');
+
+            // Move to next screen
+            currentScreen = (currentScreen + 1) % totalScreens;
+            
+            // Add active to new screen
+            screens[currentScreen].classList.add('active');
+
+            // Update progress dots
+            updateProgress();
+
+            // Update button text
+            if (currentScreen === totalScreens - 1) {
+                nextBtn.textContent = 'Bắt đầu lại ↺';
+            } else {
+                nextBtn.textContent = 'Tiếp theo →';
+            }
+
+            // Create hearts on transition
+            createHearts();
+        }
+
+        function createHearts() {
+            const container = document.getElementById('hearts-container');
+            const hearts = ['💖', '💕', '💗', '💓', '💝', '🌸', '🌺', '🌹'];
+            
+            for (let i = 0; i < 8; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDelay = Math.random() * 2 + 's';
+                heart.style.animationDuration = (4 + Math.random() * 2) + 's';
+                container.appendChild(heart);
+
+                setTimeout(() => heart.remove(), 7000);
+            }
+        }
+
+        // Button click handler
+        nextBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            nextScreen();
+        });
+
+        // Click anywhere to advance (except button)
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.nav-button')) {
+                nextScreen();
+            }
+        });
+
+        // Initial hearts
+        createHearts();
+        setInterval(createHearts, 4000);
+    </script>
+</body>
+</html>
